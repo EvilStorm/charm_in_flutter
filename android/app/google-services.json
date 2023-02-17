@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "264843653156",
+    "project_id": "charmin-44e6c",
+    "storage_bucket": "charmin-44e6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264843653156:android:8e74d10ed92acefed9a8b1",
+        "android_client_info": {
+          "package_name": "com.hj.charmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264843653156-jgkkbshrvcilvncbh3c1lreuj7sg3gct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHzGAngyiTg7fPk76joWRfEPoeeb41MXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264843653156-jgkkbshrvcilvncbh3c1lreuj7sg3gct.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "264843653156-pvrvr94qr2q70j3mi9k7a6ioajpr1u76.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hj.charmin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
