@@ -1,7 +1,9 @@
 import 'package:charmin/bloc/fetch_response.dart';
 import 'package:charmin/bloc/fetch_state.dart';
 
-class SignedIn extends FetchState {
+abstract class AuthState with FetchState {}
+
+class SignedIn extends AuthState {
   final FetchResponse response;
 
   SignedIn({
@@ -9,9 +11,11 @@ class SignedIn extends FetchState {
   });
 }
 
-class SignedOut extends FetchState {}
+class SignedOut extends AuthState {}
 
-class AuthTokenLoaded extends FetchState {
+class HasBeenNotSigned extends AuthState {}
+
+class AuthTokenLoaded extends AuthState {
   final FetchResponse response;
 
   AuthTokenLoaded({

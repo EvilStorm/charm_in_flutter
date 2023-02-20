@@ -1,10 +1,13 @@
 import 'package:charmin/bloc/fetch_response.dart';
 import 'package:charmin/bloc/fetch_state.dart';
 
-class CurrentAppVersionLoaded extends FetchState {
-  final FetchResponse response;
+abstract class AppVersionState with FetchState {}
 
-  CurrentAppVersionLoaded({
+class LastedVersion extends AppVersionState {}
+
+class HasNewVersion<T> extends AppVersionState {
+  final FetchResponse<T> response;
+  HasNewVersion({
     required this.response,
   });
 }

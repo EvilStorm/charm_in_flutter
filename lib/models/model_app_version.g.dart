@@ -8,7 +8,7 @@ part of 'model_app_version.dart';
 
 _$_AppVersionModel _$$_AppVersionModelFromJson(Map<String, dynamic> json) =>
     _$_AppVersionModel(
-      id: json['_id'] as String,
+      id: json['_id'] as String?,
       appVerCode: json['appVerCode'] as int,
       appVerName: json['appVerName'] as String,
       say: json['say'] as String,

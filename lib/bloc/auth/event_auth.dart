@@ -1,13 +1,13 @@
-abstract class AuthEvent {}
+import 'package:charmin/bloc/fetch_event.dart';
+
+abstract class AuthEvent with FetchEvent {}
 
 class SignInEvent extends AuthEvent {}
 
-class SignInWithTokenInEvent extends AuthEvent {}
+class AutoSignInEvent extends AuthEvent {}
+
+class SignOutEvent extends AuthEvent {}
 
 class AddAccountEvent extends AuthEvent {}
 
 class PatchInfoEvent extends AuthEvent {}
-
-class SignOutEvent extends AuthEvent {}
-
-class SignCheckEvent extends AuthEvent {}

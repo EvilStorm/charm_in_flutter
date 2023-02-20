@@ -1,5 +1,6 @@
 import 'package:charmin/bloc/app_version/bloc_app_version.dart';
 import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/bloc/fetch_state.dart';
 import 'package:charmin/components/fcm.dart';
@@ -31,36 +32,24 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  void movePage(BuildContext context, String path) {
+    SchedulerBinding.instance.addPostFrameCallback((_) => context.go(path));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppVersionBloc(
-            appVerRepository: AppVersionRepository(),
-          ),
-        ),
-        BlocProvider(
           create: (context) => AuthBloc(
             authRepository: AuthRepository(),
-          ),
+          )..add(AutoSignInEvent()),
         ),
       ],
-      child: BlocListener<AuthBloc, FetchState>(
-        listener: (context, state) {
-          if (state is SignedIn) {
-            Print.e(" Signed IN");
-            context.push("/main");
-          } else if (state is SignedOut) {
-            context.push("/signIn");
-            Print.e(" Signed OUT");
-          }
-        },
-        child: MaterialApp.router(
-          title: 'Flutter Demo',
-          theme: Themes.lightTheme,
-          routerConfig: router,
-        ),
+      child: MaterialApp.router(
+        title: 'Flutter Demo',
+        theme: Themes.lightTheme,
+        routerConfig: router,
       ),
     );
   }

@@ -1,8 +1,8 @@
 class FetchResponse<T> {
   int stateCode;
-  T model;
+  T? model;
   FetchResponse({
     required this.stateCode,
-    required this.model,
+    this.model,
   });
 }

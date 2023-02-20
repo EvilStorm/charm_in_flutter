@@ -25,6 +25,16 @@ class AppVersionRepository {
     }
   }
 
+  Future<Response> reqUpdateCheck(int versionCode, String os) async {
+    try {
+      final response =
+          await ApiClient().get("/api/v1/appVer/after/$versionCode/$os");
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<Response> getCurrentVersion() async {
     try {
       final response = await ApiClient().get("/api/v1/appVer/latest");

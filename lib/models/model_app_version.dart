@@ -12,7 +12,7 @@ class AppVersionModel with _$AppVersionModel {
   // "os": "A",
   // "isMustUpdate": false
   const factory AppVersionModel({
-    @JsonKey(name: '_id') required String id,
+    @JsonKey(name: '_id') String? id,
     required int appVerCode,
     required String appVerName,
     required String say,

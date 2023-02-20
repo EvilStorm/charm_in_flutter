@@ -21,7 +21,7 @@ AppVersionModel _$AppVersionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppVersionModel {
   @JsonKey(name: '_id')
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   int get appVerCode => throw _privateConstructorUsedError;
   String get appVerName => throw _privateConstructorUsedError;
   String get say => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $AppVersionModelCopyWith<$Res> {
       _$AppVersionModelCopyWithImpl<$Res, AppVersionModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') String id,
+      {@JsonKey(name: '_id') String? id,
       int appVerCode,
       String appVerName,
       String say,
@@ -62,7 +62,7 @@ class _$AppVersionModelCopyWithImpl<$Res, $Val extends AppVersionModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? appVerCode = null,
     Object? appVerName = null,
     Object? say = null,
@@ -70,10 +70,10 @@ class _$AppVersionModelCopyWithImpl<$Res, $Val extends AppVersionModel>
     Object? isMustUpdate = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       appVerCode: null == appVerCode
           ? _value.appVerCode
           : appVerCode // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$_AppVersionModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: '_id') String id,
+      {@JsonKey(name: '_id') String? id,
       int appVerCode,
       String appVerName,
       String say,
@@ -126,7 +126,7 @@ class __$$_AppVersionModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? appVerCode = null,
     Object? appVerName = null,
     Object? say = null,
@@ -134,10 +134,10 @@ class __$$_AppVersionModelCopyWithImpl<$Res>
     Object? isMustUpdate = null,
   }) {
     return _then(_$_AppVersionModel(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       appVerCode: null == appVerCode
           ? _value.appVerCode
           : appVerCode // ignore: cast_nullable_to_non_nullable
@@ -166,7 +166,7 @@ class __$$_AppVersionModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppVersionModel implements _AppVersionModel {
   const _$_AppVersionModel(
-      {@JsonKey(name: '_id') required this.id,
+      {@JsonKey(name: '_id') this.id,
       required this.appVerCode,
       required this.appVerName,
       required this.say,
@@ -178,7 +178,7 @@ class _$_AppVersionModel implements _AppVersionModel {
 
   @override
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
   @override
   final int appVerCode;
   @override
@@ -232,7 +232,7 @@ class _$_AppVersionModel implements _AppVersionModel {
 
 abstract class _AppVersionModel implements AppVersionModel {
   const factory _AppVersionModel(
-      {@JsonKey(name: '_id') required final String id,
+      {@JsonKey(name: '_id') final String? id,
       required final int appVerCode,
       required final String appVerName,
       required final String say,
@@ -244,7 +244,7 @@ abstract class _AppVersionModel implements AppVersionModel {
 
   @override
   @JsonKey(name: '_id')
-  String get id;
+  String? get id;
   @override
   int get appVerCode;
   @override

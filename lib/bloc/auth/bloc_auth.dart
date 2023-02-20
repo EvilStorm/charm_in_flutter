@@ -13,7 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, FetchState> {
     required this.authRepository,
   }) : super(Empty()) {
     on<SignInEvent>(_signIn);
-    on<SignCheckEvent>(_signChecker);
+    on<AutoSignInEvent>(_autoSignIn);
     on<SignOutEvent>(_signedOut);
   }
 
@@ -21,9 +21,9 @@ class AuthBloc extends Bloc<AuthEvent, FetchState> {
     emit(Loading());
   }
 
-  void _signChecker(SignCheckEvent event, Emitter<FetchState> emit) async {
+  void _autoSignIn(AutoSignInEvent event, Emitter<FetchState> emit) async {
     await Future.delayed(Duration(seconds: 1));
-    emit(SignedIn(response: FetchResponse(stateCode: 1, model: null)));
+    emit(SignedOut());
   }
 
   void _signedOut(SignOutEvent event, Emitter<FetchState> emit) async {
