@@ -22,20 +22,21 @@ class Themes {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           backgroundColor: ColorStore.primaryColor,
           padding: const EdgeInsets.symmetric(
-              vertical: sapceGap, horizontal: sapceGap * 4),
+              vertical: sapceGap, horizontal: sapceGap * 2),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        floatingLabelStyle: const TextStyle(color: ColorStore.primaryColor),
+        floatingLabelStyle:
+            const TextStyle(color: ColorStore.primaryLightColor),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             style: BorderStyle.solid,
-            color: ColorStore.primaryColor,
+            color: ColorStore.primaryLightColor,
           ),
-          borderRadius: BorderRadius.circular(sapceGap * 3),
+          borderRadius: BorderRadius.circular(sapceGap),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(sapceGap * 3),
+          borderRadius: BorderRadius.circular(sapceGap),
         ),
       ),
       sliderTheme: const SliderThemeData(
