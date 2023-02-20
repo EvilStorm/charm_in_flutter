@@ -1,17 +1,23 @@
+import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/event_auth.dart';
+import 'package:charmin/bloc/auth/state_auth.dart';
+import 'package:charmin/bloc/fetch_state.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/router/sign/widgets/sign_up_box.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_border_horizental.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_btns_section.dart';
-import 'package:charmin/router/widget/button.dart';
 import 'package:charmin/router/widget/circular_progress.dart';
 import 'package:charmin/store/store_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpRoute extends StatelessWidget {
   const SignUpRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -62,12 +68,35 @@ class SignUpRoute extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned.fill(
-                child: Visibility(
-                  visible: false,
-                  child: CircularProgress(),
-                ),
-              )
+              BlocConsumer<AuthBloc, FetchState>(
+                  builder: (context, state) {
+                    if (state is Loading) {
+                      return const Positioned.fill(
+                        child: CircularProgress(),
+                      );
+                    } else if (state is ErrorHasMesasge) {
+                      SnackBar snackBar = SnackBar(
+                        duration: const Duration(milliseconds: 500),
+                        behavior: SnackBarBehavior.floating,
+                        content: Text(
+                          state.message,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                        ),
+                        backgroundColor: ColorStore.primaryColor,
+                      );
+                      SchedulerBinding.instance
+                          .addPostFrameCallback((timeStamp) {
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      });
+                    }
+                    return SizedBox.shrink();
+                  },
+                  listener: (context, state) {}),
             ],
           ),
         ),

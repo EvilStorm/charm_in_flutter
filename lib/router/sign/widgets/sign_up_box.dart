@@ -1,15 +1,19 @@
+import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/store/store_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpBox extends StatelessWidget {
   SignUpBox({super.key});
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     return Column(
       children: [
         TextField(
@@ -46,7 +50,7 @@ class SignUpBox extends StatelessWidget {
                     color: ColorStore.textBasicSubColor,
                     fontWeight: FontWeight.w600),
               ),
-              SizedBox(
+              const SizedBox(
                 width: sapceGap * 2,
               ),
               Text(
@@ -66,7 +70,11 @@ class SignUpBox extends StatelessWidget {
           child: SizedBox(
             width: 120,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                authBloc.add(EmailSignInEvent(
+                    email: emailController.text,
+                    password: passwordController.text));
+              },
               child: const Text("로그인"),
             ),
           ),

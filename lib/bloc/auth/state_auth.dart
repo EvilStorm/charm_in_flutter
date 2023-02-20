@@ -11,6 +11,11 @@ class SignedIn extends AuthState {
   });
 }
 
+class ErrorHasMesasge extends AuthState {
+  final String message;
+  ErrorHasMesasge({required this.message});
+}
+
 class SignedOut extends AuthState {}
 
 class HasBeenNotSigned extends AuthState {}
