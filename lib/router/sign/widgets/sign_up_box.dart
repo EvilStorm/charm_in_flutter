@@ -1,7 +1,11 @@
 import 'package:charmin/bloc/auth/bloc_auth.dart';
 import 'package:charmin/bloc/auth/event_auth.dart';
+import 'package:charmin/bloc/password/bloc_password.dart';
+import 'package:charmin/bloc/password/event_password.dart';
+import 'package:charmin/bloc/password/state_password.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/store/store_color.dart';
+import 'package:charmin/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +18,7 @@ class SignUpBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
+    PasswordBloc passwordBloc = BlocProvider.of<PasswordBloc>(context);
     return Column(
       children: [
         TextField(
@@ -29,11 +34,50 @@ class SignUpBox extends StatelessWidget {
         ),
         TextField(
           controller: passwordController,
+          onChanged: (value) => passwordBloc.add(Validation(password: value)),
           obscureText: true,
           style: Theme.of(context).textTheme.bodyText1,
           decoration: const InputDecoration(
             labelText: '비밀번호',
           ),
+        ),
+        const SizedBox(
+          height: sapceGap / 2,
+        ),
+        BlocConsumer<PasswordBloc, PasswordCheckState>(
+          builder: (context, state) {
+            if (state is ValidationState) {
+              return Wrap(
+                children: state.steps
+                    .map((e) => Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: sapceGap),
+                          child: Text(
+                            e.validation,
+                            style: Theme.of(context)
+                                .textTheme
+                                .caption!
+                                .copyWith(
+                                    color: e.isOk ? Colors.green : Colors.red),
+                          ),
+                        ))
+                    .toList(),
+              );
+            }
+            return const SizedBox.shrink();
+          },
+          listener: (context, state) {},
+          buildWhen: (previous, current) {
+            if (previous is ValidationState && current is ValidationState) {
+              int length = previous.steps.length;
+              for (int i = 0; i < length; i++) {
+                if (previous.steps.elementAt(i) != current.steps.elementAt(i)) {
+                  return true;
+                }
+              }
+            }
+            return false;
+          },
         ),
         const SizedBox(
           height: sapceGap * 2,

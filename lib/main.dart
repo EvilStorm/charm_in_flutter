@@ -1,3 +1,4 @@
+import 'package:charmin/bloc/app_start/bloc_app_start.dart';
 import 'package:charmin/bloc/app_version/bloc_app_version.dart';
 import 'package:charmin/bloc/auth/bloc_auth.dart';
 import 'package:charmin/bloc/auth/event_auth.dart';

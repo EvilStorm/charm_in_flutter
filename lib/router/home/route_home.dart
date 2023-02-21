@@ -38,6 +38,15 @@ class HomeRoute extends StatelessWidget {
                 },
                 child: Text("GO BACK"),
               ),
+              SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.push("/setting");
+                },
+                child: Text("GO SEtting"),
+              ),
             ],
           ),
         ),

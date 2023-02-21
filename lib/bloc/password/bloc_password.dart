@@ -1,0 +1,37 @@
+import 'package:charmin/bloc/password/event_password.dart';
+import 'package:charmin/bloc/password/state_password.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class PasswordBloc extends Bloc<PasswordCheckEvent, PasswordCheckState> {
+  PasswordBloc() : super(ReadyForStart()) {
+    on<Validation>(_checkValidation);
+  }
+
+  RegExp regex =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,20}$');
+
+  RegExp upperCase = RegExp(r'^(?=.*?[A-Z]).{1,}$');
+  RegExp lowerCase = RegExp(r'^(?=.*?[a-z]).{1,}$');
+  RegExp numberCase = RegExp(r'^(?=.*?[0-9]).{1,}$');
+  RegExp specialCase = RegExp(r'^(?=.*?[!@#\$&*~]).{1,}$');
+  RegExp lengthCase = RegExp(r'^.{8,20}$');
+
+  void _checkValidation(Validation event, Emitter<PasswordCheckState> emit) {
+    List<ValidationModel> result = [];
+    result.add(ValidationModel(
+        validation: "소문자", isOk: lowerCase.hasMatch(event.password)));
+    result.add(ValidationModel(
+        validation: "대문자", isOk: upperCase.hasMatch(event.password)));
+    result.add(ValidationModel(
+        validation: "숫자", isOk: numberCase.hasMatch(event.password)));
+    result.add(ValidationModel(
+        validation: "특수문자(!@#\$&*~)",
+        isOk: specialCase.hasMatch(event.password)));
+    result.add(ValidationModel(
+        validation: "8~20자리", isOk: lengthCase.hasMatch(event.password)));
+
+    int hasFalse = result.indexWhere((e) => e.isOk == false);
+
+    emit(ValidationState(steps: result, totalOk: (hasFalse == -1)));
+  }
+}

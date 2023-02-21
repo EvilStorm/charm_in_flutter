@@ -1,23 +1,24 @@
 import 'package:charmin/bloc/auth/bloc_auth.dart';
 import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/auth/state_auth.dart';
-import 'package:charmin/bloc/fetch_state.dart';
+import 'package:charmin/bloc/password/bloc_password.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/router/sign/widgets/sign_up_box.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_border_horizental.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_btns_section.dart';
 import 'package:charmin/router/widget/circular_progress.dart';
 import 'package:charmin/store/store_color.dart';
+import 'package:charmin/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpRoute extends StatelessWidget {
-  const SignUpRoute({super.key});
+  SignUpRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
+    // AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -47,7 +48,10 @@ class SignUpRoute extends StatelessWidget {
                       const SizedBox(
                         height: 50.0,
                       ),
-                      SizedBox(height: 300.0, child: SignUpBox()),
+                      BlocProvider(
+                        create: (context) => PasswordBloc(),
+                        child: SizedBox(height: 300.0, child: SignUpBox()),
+                      ),
                       const SizedBox(
                         height: sapceGap / 2,
                       ),
@@ -68,7 +72,7 @@ class SignUpRoute extends StatelessWidget {
                   ),
                 ),
               ),
-              BlocConsumer<AuthBloc, FetchState>(
+              BlocConsumer<AuthBloc, AuthState>(
                   builder: (context, state) {
                     if (state is Loading) {
                       return const Positioned.fill(
@@ -76,7 +80,7 @@ class SignUpRoute extends StatelessWidget {
                       );
                     } else if (state is ErrorHasMesasge) {
                       SnackBar snackBar = SnackBar(
-                        duration: const Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 800),
                         behavior: SnackBarBehavior.floating,
                         content: Text(
                           state.message,

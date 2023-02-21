@@ -1,4 +1,6 @@
+import 'package:charmin/constants/signed_type.dart';
 import 'package:charmin/network/api_client.dart';
+import 'package:charmin/network/app_exception.dart';
 import 'package:dio/dio.dart';
 
 class AuthRepository {
@@ -7,6 +9,26 @@ class AuthRepository {
     return _client;
   }
   AuthRepository._internal();
+
+  Future<Response> signUp(
+      String firebaseId, String email, SignedType type) async {
+    Map<String, dynamic> body = {
+      "firebaseId": firebaseId,
+      "email": email,
+      "joinType": type.type,
+    };
+
+    try {
+      final response = await ApiClient().post("/api/v1/user", body: body);
+      return response;
+    } on AppException {
+      rethrow;
+    } on DioError catch (dio) {
+      throw FetchDataException(dio.message, dio);
+    } catch (e) {
+      throw UnExpectedException("Error", e);
+    }
+  }
 
   Future<Response> signIn(int userCmmnSnm, int userSn) async {
     Map<String, dynamic> body = {

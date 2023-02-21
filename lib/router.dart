@@ -1,5 +1,6 @@
 import 'package:charmin/bloc/app_start/bloc_app_start.dart';
 import 'package:charmin/router/home/route_home.dart';
+import 'package:charmin/router/setting/screen_setting.dart';
 import 'package:charmin/router/sign/route_sign_in.dart';
 import 'package:charmin/router/sign/route_sign_up.dart';
 import 'package:charmin/router/splash/route_splash.dart';
@@ -20,8 +21,12 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const HomeRoute(),
     ),
     GoRoute(
+      path: "/setting",
+      builder: (context, state) => SettingScreen(),
+    ),
+    GoRoute(
         path: "/signUp",
-        builder: (context, state) => const SignUpRoute(),
+        builder: (context, state) => SignUpRoute(),
         routes: [
           GoRoute(
             path: "signIn",

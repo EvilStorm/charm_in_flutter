@@ -1,15 +1,12 @@
 import 'package:charmin/bloc/fetch_response.dart';
-import 'package:charmin/bloc/fetch_state.dart';
 
-abstract class AuthState with FetchState {}
+abstract class AuthState {}
 
-class SignedIn extends AuthState {
-  final FetchResponse response;
+class Empty extends AuthState {}
 
-  SignedIn({
-    required this.response,
-  });
-}
+class Loading extends AuthState {}
+
+class SignedIn extends AuthState {}
 
 class ErrorHasMesasge extends AuthState {
   final String message;

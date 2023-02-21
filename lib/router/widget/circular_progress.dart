@@ -7,8 +7,8 @@ class CircularProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       color: const Color.fromARGB(155, 68, 68, 68),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
