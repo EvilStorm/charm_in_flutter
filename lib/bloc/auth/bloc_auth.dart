@@ -59,11 +59,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return;
     }
     try {
-      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: event.email, password: event.password);
 
-      final addAccountResp = authRepository.signUp(
-          result.user!.uid, result.user!.email!, SignedType.email);
+      final addAccountResp = authRepository.signIn(result.user!.uid);
 
       Print.i(addAccountResp);
     } on FirebaseAuthException catch (e) {
@@ -88,6 +87,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ErrorHasMesasge(message: pwdValidation));
       return;
     }
+    if (event.password != event.checkPassword) {
+      emit(ErrorHasMesasge(message: "두 비밀번호가 다릅니다."));
+      return;
+    }
+
     try {
       final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: event.email, password: event.password);
@@ -98,7 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return;
     }
 
-    emit(SignedIn());
+    emit(SignUpComplate());
   }
 
   void _signIn(AuthEvent event, Emitter<AuthState> emit) async {

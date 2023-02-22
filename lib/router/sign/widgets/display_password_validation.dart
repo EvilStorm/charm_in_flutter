@@ -26,12 +26,12 @@ class PasswordValidation extends StatelessWidget {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(40),
                               ),
-                              color: e.isOk ? Colors.green : Colors.red),
+                              color: e.isOk ? Colors.green : Colors.grey),
                         ),
                         Text(
                           e.validation,
                           style: Theme.of(context).textTheme.caption!.copyWith(
-                              color: e.isOk ? Colors.green : Colors.red),
+                              color: e.isOk ? Colors.green : Colors.grey),
                         ),
                       ],
                     ))

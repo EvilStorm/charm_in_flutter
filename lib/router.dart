@@ -25,12 +25,12 @@ final GoRouter router = GoRouter(
       builder: (context, state) => SettingScreen(),
     ),
     GoRoute(
-        path: "/signUp",
-        builder: (context, state) => SignUpRoute(),
+        path: "/signIn",
+        builder: (context, state) => SignInRoute(),
         routes: [
           GoRoute(
-            path: "signIn",
-            builder: (context, state) => const SignInRoute(),
+            path: "signUp",
+            builder: (context, state) => const SignUpRoute(),
           ),
         ]),
   ],

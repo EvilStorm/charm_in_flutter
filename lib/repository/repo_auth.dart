@@ -30,15 +30,14 @@ class AuthRepository {
     }
   }
 
-  Future<Response> signIn(int userCmmnSnm, int userSn) async {
+  Future<Response> signIn(String firebaseId) async {
     Map<String, dynamic> body = {
-      "userCmmnSn": userCmmnSnm,
-      "userSn": userSn,
+      "firebaseId": firebaseId,
     };
 
     try {
       final response =
-          await ApiClient().post("/api/user/v1/signin", body: body);
+          await ApiClient().post("/api/user/v1/user/signIn", body: body);
       return response;
     } catch (e) {
       rethrow;

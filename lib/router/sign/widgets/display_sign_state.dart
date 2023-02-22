@@ -4,8 +4,6 @@ import 'package:charmin/router/widget/circular_progress.dart';
 import 'package:charmin/store/store_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignStateDisplay extends StatelessWidget {

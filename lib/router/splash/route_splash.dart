@@ -20,7 +20,7 @@ class SplashRoute extends StatelessWidget with ExceptionHandler {
         if (state is StartMain) {
           context.go('/main');
         } else if (state is StartSignIn) {
-          context.go('/signUp');
+          context.go('/signIn');
         }
       },
     );

@@ -15,8 +15,12 @@ class EmailSignInEvent extends AuthEvent {
 class EmailSignUpEvent extends AuthEvent {
   String email;
   String password;
+  String checkPassword;
 
-  EmailSignUpEvent({required this.email, required this.password});
+  EmailSignUpEvent(
+      {required this.email,
+      required this.password,
+      required this.checkPassword});
 }
 
 class ThridPartySignIn extends AuthEvent {

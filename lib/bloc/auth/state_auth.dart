@@ -6,6 +6,8 @@ class Empty extends AuthState {}
 
 class Loading extends AuthState {}
 
+class SignUpComplate extends AuthState {}
+
 class SignedIn extends AuthState {}
 
 class ErrorHasMesasge extends AuthState {

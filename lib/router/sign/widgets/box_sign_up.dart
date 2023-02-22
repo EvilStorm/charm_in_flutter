@@ -1,19 +1,12 @@
-import 'dart:ffi';
-
 import 'package:charmin/bloc/auth/bloc_auth.dart';
 import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/password/bloc_password.dart';
-import 'package:charmin/bloc/password/event_password.dart';
-import 'package:charmin/bloc/password/state_password.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/router/sign/widgets/field_password_check.dart';
 import 'package:charmin/router/sign/widgets/field_password.dart';
 import 'package:charmin/router/sign/widgets/display_password_validation.dart';
-import 'package:charmin/store/store_color.dart';
-import 'package:charmin/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class SignUpBox extends StatelessWidget {
   SignUpBox({super.key});
@@ -38,7 +31,7 @@ class SignUpBox extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: sapceGap * 3,
+              height: sapceGap * 4,
             ),
             const PasswordField(),
             const SizedBox(
@@ -46,12 +39,9 @@ class SignUpBox extends StatelessWidget {
             ),
             PasswordValidation(),
             const SizedBox(
-              height: sapceGap,
+              height: sapceGap * 2,
             ),
             const PasswordCheckField(),
-            const SizedBox(
-              height: sapceGap / 2,
-            ),
             const SizedBox(
               height: sapceGap * 4,
             ),
@@ -62,9 +52,11 @@ class SignUpBox extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     authBloc.add(
-                      EmailSignInEvent(
-                          email: emailController.text,
-                          password: passwordBloc.password ?? ""),
+                      EmailSignUpEvent(
+                        email: emailController.text,
+                        password: passwordBloc.password ?? "",
+                        checkPassword: passwordBloc.passwordCheck ?? "",
+                      ),
                     );
                   },
                   child: const Text("회원가입"),
