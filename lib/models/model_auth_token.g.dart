@@ -8,7 +8,7 @@ part of 'model_auth_token.dart';
 
 _$_AuthTokenModel _$$_AuthTokenModelFromJson(Map<String, dynamic> json) =>
     _$_AuthTokenModel(
-      type: json['type'] as String,
+      type: json['type'] as String?,
       token: json['token'] as String,
       refreshToken: json['refreshToken'] as String,
     );

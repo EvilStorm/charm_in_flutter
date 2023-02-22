@@ -11,7 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 const firebaesError = {
   'email-already-in-use': "사용중인 이메일 입니다.",
-  'invalid-email': "이메일 주소를 사용해주세요."
+  'invalid-email': "이메일 주소를 사용해주세요.",
+  'user-not-found': "아이디,비밀번호를 확인해주세요.",
 };
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

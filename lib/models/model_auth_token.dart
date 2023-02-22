@@ -8,7 +8,7 @@ part 'model_auth_token.g.dart';
 @freezed
 class AuthTokenModel with _$AuthTokenModel {
   const factory AuthTokenModel({
-    required String type,
+    required String? type,
     required String token,
     required String refreshToken,
   }) = _AuthTokenModel;

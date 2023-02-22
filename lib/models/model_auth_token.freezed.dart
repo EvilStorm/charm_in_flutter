@@ -20,7 +20,7 @@ AuthTokenModel _$AuthTokenModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthTokenModel {
-  String get type => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
   String get refreshToken => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $AuthTokenModelCopyWith<$Res> {
           AuthTokenModel value, $Res Function(AuthTokenModel) then) =
       _$AuthTokenModelCopyWithImpl<$Res, AuthTokenModel>;
   @useResult
-  $Res call({String type, String token, String refreshToken});
+  $Res call({String? type, String token, String refreshToken});
 }
 
 /// @nodoc
@@ -52,15 +52,15 @@ class _$AuthTokenModelCopyWithImpl<$Res, $Val extends AuthTokenModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? token = null,
     Object? refreshToken = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$_AuthTokenModelCopyWith<$Res>
       __$$_AuthTokenModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String type, String token, String refreshToken});
+  $Res call({String? type, String token, String refreshToken});
 }
 
 /// @nodoc
@@ -95,15 +95,15 @@ class __$$_AuthTokenModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? token = null,
     Object? refreshToken = null,
   }) {
     return _then(_$_AuthTokenModel(
-      type: null == type
+      type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ class _$_AuthTokenModel implements _AuthTokenModel {
       _$$_AuthTokenModelFromJson(json);
 
   @override
-  final String type;
+  final String? type;
   @override
   final String token;
   @override
@@ -168,7 +168,7 @@ class _$_AuthTokenModel implements _AuthTokenModel {
 
 abstract class _AuthTokenModel implements AuthTokenModel {
   const factory _AuthTokenModel(
-      {required final String type,
+      {required final String? type,
       required final String token,
       required final String refreshToken}) = _$_AuthTokenModel;
 
@@ -176,7 +176,7 @@ abstract class _AuthTokenModel implements AuthTokenModel {
       _$_AuthTokenModel.fromJson;
 
   @override
-  String get type;
+  String? get type;
   @override
   String get token;
   @override
