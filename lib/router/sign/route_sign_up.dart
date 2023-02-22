@@ -3,7 +3,8 @@ import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/bloc/password/bloc_password.dart';
 import 'package:charmin/constants/constants.dart';
-import 'package:charmin/router/sign/widgets/sign_up_box.dart';
+import 'package:charmin/router/sign/widgets/display_sign_state.dart';
+import 'package:charmin/router/sign/widgets/box_sign_up.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_border_horizental.dart';
 import 'package:charmin/router/sign/widgets/thrid_party/widget_btns_section.dart';
 import 'package:charmin/router/widget/circular_progress.dart';
@@ -50,10 +51,7 @@ class SignUpRoute extends StatelessWidget {
                       ),
                       BlocProvider(
                         create: (context) => PasswordBloc(),
-                        child: SizedBox(height: 300.0, child: SignUpBox()),
-                      ),
-                      const SizedBox(
-                        height: sapceGap / 2,
+                        child: SizedBox(height: 350.0, child: SignUpBox()),
                       ),
                       const SizedBox(
                         height: sapceGap * 2,
@@ -72,35 +70,7 @@ class SignUpRoute extends StatelessWidget {
                   ),
                 ),
               ),
-              BlocConsumer<AuthBloc, AuthState>(
-                  builder: (context, state) {
-                    if (state is Loading) {
-                      return const Positioned.fill(
-                        child: CircularProgress(),
-                      );
-                    } else if (state is ErrorHasMesasge) {
-                      SnackBar snackBar = SnackBar(
-                        duration: const Duration(milliseconds: 800),
-                        behavior: SnackBarBehavior.floating,
-                        content: Text(
-                          state.message,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                        ),
-                        backgroundColor: ColorStore.primaryColor,
-                      );
-                      SchedulerBinding.instance
-                          .addPostFrameCallback((timeStamp) {
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      });
-                    }
-                    return SizedBox.shrink();
-                  },
-                  listener: (context, state) {}),
+              const SignStateDisplay(),
             ],
           ),
         ),

@@ -20,3 +20,9 @@ class ValidationState extends PasswordCheckState {
 
   ValidationState({required this.totalOk, required this.steps});
 }
+
+class DoubleCheckState extends PasswordCheckState {
+  final bool isOk;
+
+  DoubleCheckState({required this.isOk});
+}
