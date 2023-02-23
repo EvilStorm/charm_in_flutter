@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/constants/signed_type.dart';
+import 'package:charmin/models/model_user.dart';
 import 'package:charmin/repository/repo_auth.dart';
 import 'package:charmin/utils/print.dart';
+import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +21,8 @@ const firebaesError = {
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late AuthRepository authRepository;
   String? errorMessage;
+
+  late UserModel userInfo;
 
   AuthBloc({
     required this.authRepository,
@@ -63,16 +68,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: event.email, password: event.password);
 
-      final addAccountResp = authRepository.signIn(result.user!.uid);
-
-      Print.i(addAccountResp);
+      // final addAccountResp = authRepository.signIn(result.user!.uid);
+      await _charmInSignIn(result.user!.uid, emit);
     } on FirebaseAuthException catch (e) {
       emit(ErrorHasMesasge(
           message: firebaesError[e.code] ?? e.message ?? "오류가 발생했습니다."));
       return;
     }
+  }
 
-    emit(SignedIn());
+  Future<void> _charmInSignIn(
+      String firebaseId, Emitter<AuthState> emit) async {
+    try {
+      Response addAccountResp = await authRepository.signIn(firebaseId);
+      Print.i(addAccountResp);
+      if (addAccountResp.statusCode != 200) {
+        emit(ErrorHasMesasge(
+            message: addAccountResp.statusMessage ?? "문제가 있습니다."));
+        return;
+      }
+
+      userInfo = UserModel.fromJson(addAccountResp.data['data']);
+
+      emit(SignedIn());
+    } catch (e) {
+      emit(ErrorHasMesasge(message: e.toString()));
+      return;
+    }
   }
 
   void _emailSignUp(EmailSignUpEvent event, Emitter<AuthState> emit) async {
@@ -96,14 +118,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: event.email, password: event.password);
-      Print.e(result.toString());
+      final signInUp = await authRepository.signUp(
+          result.user!.uid, event.email, SignedType.email);
+
+      await _charmInSignIn(result.user!.uid, emit);
+
+      // emit(SignUpComplate(firebaseId: result.user!.uid));
     } on FirebaseAuthException catch (e) {
       emit(ErrorHasMesasge(
           message: firebaesError[e.code] ?? e.message ?? "오류가 발생했습니다."));
       return;
+    } catch (e) {
+      emit(ErrorHasMesasge(message: e.toString()));
+      return;
     }
-
-    emit(SignUpComplate());
   }
 
   void _signIn(AuthEvent event, Emitter<AuthState> emit) async {

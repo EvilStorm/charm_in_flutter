@@ -1,3 +1,5 @@
+import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/bloc/password/bloc_password.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/router/sign/widgets/box_sign_in.dart';
@@ -17,12 +19,12 @@ class SignInRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
+        // leading: IconButton(
+        //   onPressed: () => context.pop(),
+        //   icon: const Icon(Icons.arrow_back_ios_new),
+        // ),
         title: Text(
-          "회원가입",
+          "로그인",
           style: Theme.of(context).textTheme.headline2,
         ),
       ),
@@ -63,6 +65,13 @@ class SignInRoute extends StatelessWidget {
                 ),
               ),
               const SignStateDisplay(),
+              BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
+                return const SizedBox.shrink();
+              }, listener: (context, state) {
+                if (state is SignedIn) {
+                  context.go('/main');
+                }
+              }),
             ],
           ),
         ),

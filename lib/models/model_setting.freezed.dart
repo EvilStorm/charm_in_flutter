@@ -22,7 +22,7 @@ SettingModel _$SettingModelFromJson(Map<String, dynamic> json) {
 mixin _$SettingModel {
   @JsonKey(name: '_id')
   String? get id => throw _privateConstructorUsedError;
-  bool get answerAlarml => throw _privateConstructorUsedError;
+  bool get answerAlarm => throw _privateConstructorUsedError;
   bool get systemAlarm => throw _privateConstructorUsedError;
   bool get eventAlarm => throw _privateConstructorUsedError;
   bool get nightEventAlarm => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $SettingModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: '_id') String? id,
-      bool answerAlarml,
+      bool answerAlarm,
       bool systemAlarm,
       bool eventAlarm,
       bool nightEventAlarm,
@@ -63,7 +63,7 @@ class _$SettingModelCopyWithImpl<$Res, $Val extends SettingModel>
   @override
   $Res call({
     Object? id = freezed,
-    Object? answerAlarml = null,
+    Object? answerAlarm = null,
     Object? systemAlarm = null,
     Object? eventAlarm = null,
     Object? nightEventAlarm = null,
@@ -74,9 +74,9 @@ class _$SettingModelCopyWithImpl<$Res, $Val extends SettingModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      answerAlarml: null == answerAlarml
-          ? _value.answerAlarml
-          : answerAlarml // ignore: cast_nullable_to_non_nullable
+      answerAlarm: null == answerAlarm
+          ? _value.answerAlarm
+          : answerAlarm // ignore: cast_nullable_to_non_nullable
               as bool,
       systemAlarm: null == systemAlarm
           ? _value.systemAlarm
@@ -108,7 +108,7 @@ abstract class _$$_SettingModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: '_id') String? id,
-      bool answerAlarml,
+      bool answerAlarm,
       bool systemAlarm,
       bool eventAlarm,
       bool nightEventAlarm,
@@ -127,7 +127,7 @@ class __$$_SettingModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? answerAlarml = null,
+    Object? answerAlarm = null,
     Object? systemAlarm = null,
     Object? eventAlarm = null,
     Object? nightEventAlarm = null,
@@ -138,9 +138,9 @@ class __$$_SettingModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      answerAlarml: null == answerAlarml
-          ? _value.answerAlarml
-          : answerAlarml // ignore: cast_nullable_to_non_nullable
+      answerAlarm: null == answerAlarm
+          ? _value.answerAlarm
+          : answerAlarm // ignore: cast_nullable_to_non_nullable
               as bool,
       systemAlarm: null == systemAlarm
           ? _value.systemAlarm
@@ -167,7 +167,7 @@ class __$$_SettingModelCopyWithImpl<$Res>
 class _$_SettingModel implements _SettingModel {
   const _$_SettingModel(
       {@JsonKey(name: '_id') this.id,
-      required this.answerAlarml,
+      required this.answerAlarm,
       required this.systemAlarm,
       required this.eventAlarm,
       required this.nightEventAlarm,
@@ -180,7 +180,7 @@ class _$_SettingModel implements _SettingModel {
   @JsonKey(name: '_id')
   final String? id;
   @override
-  final bool answerAlarml;
+  final bool answerAlarm;
   @override
   final bool systemAlarm;
   @override
@@ -192,7 +192,7 @@ class _$_SettingModel implements _SettingModel {
 
   @override
   String toString() {
-    return 'SettingModel(id: $id, answerAlarml: $answerAlarml, systemAlarm: $systemAlarm, eventAlarm: $eventAlarm, nightEventAlarm: $nightEventAlarm, emailSend: $emailSend)';
+    return 'SettingModel(id: $id, answerAlarm: $answerAlarm, systemAlarm: $systemAlarm, eventAlarm: $eventAlarm, nightEventAlarm: $nightEventAlarm, emailSend: $emailSend)';
   }
 
   @override
@@ -201,8 +201,8 @@ class _$_SettingModel implements _SettingModel {
         (other.runtimeType == runtimeType &&
             other is _$_SettingModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.answerAlarml, answerAlarml) ||
-                other.answerAlarml == answerAlarml) &&
+            (identical(other.answerAlarm, answerAlarm) ||
+                other.answerAlarm == answerAlarm) &&
             (identical(other.systemAlarm, systemAlarm) ||
                 other.systemAlarm == systemAlarm) &&
             (identical(other.eventAlarm, eventAlarm) ||
@@ -215,7 +215,7 @@ class _$_SettingModel implements _SettingModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, answerAlarml, systemAlarm,
+  int get hashCode => Object.hash(runtimeType, id, answerAlarm, systemAlarm,
       eventAlarm, nightEventAlarm, emailSend);
 
   @JsonKey(ignore: true)
@@ -235,7 +235,7 @@ class _$_SettingModel implements _SettingModel {
 abstract class _SettingModel implements SettingModel {
   const factory _SettingModel(
       {@JsonKey(name: '_id') final String? id,
-      required final bool answerAlarml,
+      required final bool answerAlarm,
       required final bool systemAlarm,
       required final bool eventAlarm,
       required final bool nightEventAlarm,
@@ -248,7 +248,7 @@ abstract class _SettingModel implements SettingModel {
   @JsonKey(name: '_id')
   String? get id;
   @override
-  bool get answerAlarml;
+  bool get answerAlarm;
   @override
   bool get systemAlarm;
   @override

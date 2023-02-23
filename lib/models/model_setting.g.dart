@@ -9,7 +9,7 @@ part of 'model_setting.dart';
 _$_SettingModel _$$_SettingModelFromJson(Map<String, dynamic> json) =>
     _$_SettingModel(
       id: json['_id'] as String?,
-      answerAlarml: json['answerAlarml'] as bool,
+      answerAlarm: json['answerAlarm'] as bool,
       systemAlarm: json['systemAlarm'] as bool,
       eventAlarm: json['eventAlarm'] as bool,
       nightEventAlarm: json['nightEventAlarm'] as bool,
@@ -19,7 +19,7 @@ _$_SettingModel _$$_SettingModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_SettingModelToJson(_$_SettingModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
-      'answerAlarml': instance.answerAlarml,
+      'answerAlarm': instance.answerAlarm,
       'systemAlarm': instance.systemAlarm,
       'eventAlarm': instance.eventAlarm,
       'nightEventAlarm': instance.nightEventAlarm,

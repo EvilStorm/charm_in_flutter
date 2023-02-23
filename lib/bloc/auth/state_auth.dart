@@ -6,7 +6,9 @@ class Empty extends AuthState {}
 
 class Loading extends AuthState {}
 
-class SignUpComplate extends AuthState {}
+class SignUpComplate extends AuthState {
+  SignUpComplate({required String firebaseId});
+}
 
 class SignedIn extends AuthState {}
 

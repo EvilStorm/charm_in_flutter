@@ -24,6 +24,8 @@ mixin _$UserModel {
   int get joinType => throw _privateConstructorUsedError;
   int get secureLevel => throw _privateConstructorUsedError;
   SettingModel get setting => throw _privateConstructorUsedError;
+  UserInfoModel get extendInfo => throw _privateConstructorUsedError;
+  AuthTokenModel get authToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,9 +39,16 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {String firebaseId, int joinType, int secureLevel, SettingModel setting});
+      {String firebaseId,
+      int joinType,
+      int secureLevel,
+      SettingModel setting,
+      UserInfoModel extendInfo,
+      AuthTokenModel authToken});
 
   $SettingModelCopyWith<$Res> get setting;
+  $UserInfoModelCopyWith<$Res> get extendInfo;
+  $AuthTokenModelCopyWith<$Res> get authToken;
 }
 
 /// @nodoc
@@ -59,6 +68,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? joinType = null,
     Object? secureLevel = null,
     Object? setting = null,
+    Object? extendInfo = null,
+    Object? authToken = null,
   }) {
     return _then(_value.copyWith(
       firebaseId: null == firebaseId
@@ -77,6 +88,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.setting
           : setting // ignore: cast_nullable_to_non_nullable
               as SettingModel,
+      extendInfo: null == extendInfo
+          ? _value.extendInfo
+          : extendInfo // ignore: cast_nullable_to_non_nullable
+              as UserInfoModel,
+      authToken: null == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as AuthTokenModel,
     ) as $Val);
   }
 
@@ -85,6 +104,22 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $SettingModelCopyWith<$Res> get setting {
     return $SettingModelCopyWith<$Res>(_value.setting, (value) {
       return _then(_value.copyWith(setting: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserInfoModelCopyWith<$Res> get extendInfo {
+    return $UserInfoModelCopyWith<$Res>(_value.extendInfo, (value) {
+      return _then(_value.copyWith(extendInfo: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthTokenModelCopyWith<$Res> get authToken {
+    return $AuthTokenModelCopyWith<$Res>(_value.authToken, (value) {
+      return _then(_value.copyWith(authToken: value) as $Val);
     });
   }
 }
@@ -97,10 +132,19 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String firebaseId, int joinType, int secureLevel, SettingModel setting});
+      {String firebaseId,
+      int joinType,
+      int secureLevel,
+      SettingModel setting,
+      UserInfoModel extendInfo,
+      AuthTokenModel authToken});
 
   @override
   $SettingModelCopyWith<$Res> get setting;
+  @override
+  $UserInfoModelCopyWith<$Res> get extendInfo;
+  @override
+  $AuthTokenModelCopyWith<$Res> get authToken;
 }
 
 /// @nodoc
@@ -118,6 +162,8 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? joinType = null,
     Object? secureLevel = null,
     Object? setting = null,
+    Object? extendInfo = null,
+    Object? authToken = null,
   }) {
     return _then(_$_UserModel(
       firebaseId: null == firebaseId
@@ -136,6 +182,14 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.setting
           : setting // ignore: cast_nullable_to_non_nullable
               as SettingModel,
+      extendInfo: null == extendInfo
+          ? _value.extendInfo
+          : extendInfo // ignore: cast_nullable_to_non_nullable
+              as UserInfoModel,
+      authToken: null == authToken
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as AuthTokenModel,
     ));
   }
 }
@@ -147,7 +201,9 @@ class _$_UserModel implements _UserModel {
       {required this.firebaseId,
       required this.joinType,
       required this.secureLevel,
-      required this.setting});
+      required this.setting,
+      required this.extendInfo,
+      required this.authToken});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -160,10 +216,14 @@ class _$_UserModel implements _UserModel {
   final int secureLevel;
   @override
   final SettingModel setting;
+  @override
+  final UserInfoModel extendInfo;
+  @override
+  final AuthTokenModel authToken;
 
   @override
   String toString() {
-    return 'UserModel(firebaseId: $firebaseId, joinType: $joinType, secureLevel: $secureLevel, setting: $setting)';
+    return 'UserModel(firebaseId: $firebaseId, joinType: $joinType, secureLevel: $secureLevel, setting: $setting, extendInfo: $extendInfo, authToken: $authToken)';
   }
 
   @override
@@ -177,13 +237,17 @@ class _$_UserModel implements _UserModel {
                 other.joinType == joinType) &&
             (identical(other.secureLevel, secureLevel) ||
                 other.secureLevel == secureLevel) &&
-            (identical(other.setting, setting) || other.setting == setting));
+            (identical(other.setting, setting) || other.setting == setting) &&
+            (identical(other.extendInfo, extendInfo) ||
+                other.extendInfo == extendInfo) &&
+            (identical(other.authToken, authToken) ||
+                other.authToken == authToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, firebaseId, joinType, secureLevel, setting);
+  int get hashCode => Object.hash(runtimeType, firebaseId, joinType,
+      secureLevel, setting, extendInfo, authToken);
 
   @JsonKey(ignore: true)
   @override
@@ -204,7 +268,9 @@ abstract class _UserModel implements UserModel {
       {required final String firebaseId,
       required final int joinType,
       required final int secureLevel,
-      required final SettingModel setting}) = _$_UserModel;
+      required final SettingModel setting,
+      required final UserInfoModel extendInfo,
+      required final AuthTokenModel authToken}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -217,6 +283,10 @@ abstract class _UserModel implements UserModel {
   int get secureLevel;
   @override
   SettingModel get setting;
+  @override
+  UserInfoModel get extendInfo;
+  @override
+  AuthTokenModel get authToken;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

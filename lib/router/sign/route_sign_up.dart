@@ -1,3 +1,6 @@
+import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/event_auth.dart';
+import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/bloc/password/bloc_password.dart';
 import 'package:charmin/constants/constants.dart';
 import 'package:charmin/router/sign/widgets/display_sign_state.dart';
@@ -61,7 +64,15 @@ class SignUpRoute extends StatelessWidget {
                   ),
                 ),
               ),
-              const SignStateDisplay(),
+              // const SignStateDisplay(),
+              // BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
+              //   return const SizedBox.shrink();
+              // }, listener: (context, state) {
+              //   if (state is SignUpComplate) {
+              //     AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
+              //     bloc.add(FireBaseIdSignInEvent(firebaseId: state.firebaseId));
+              //   }
+              // }),
             ],
           ),
         ),

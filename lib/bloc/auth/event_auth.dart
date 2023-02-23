@@ -12,6 +12,12 @@ class EmailSignInEvent extends AuthEvent {
   EmailSignInEvent({required this.email, required this.password});
 }
 
+class FireBaseIdSignInEvent extends AuthEvent {
+  String firebaseId;
+
+  FireBaseIdSignInEvent({required this.firebaseId});
+}
+
 class EmailSignUpEvent extends AuthEvent {
   String email;
   String password;

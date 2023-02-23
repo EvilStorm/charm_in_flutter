@@ -10,6 +10,7 @@ import 'package:charmin/store/store_color.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInBox extends StatelessWidget {
   SignInBox({super.key});
@@ -38,35 +39,35 @@ class SignInBox extends StatelessWidget {
           height: sapceGap,
         ),
         PasswordValidation(),
-        const SizedBox(
-          height: sapceGap * 2,
-        ),
-        const SizedBox(
-          height: sapceGap * 2,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: sapceGap * 2),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () => context.push("/signIn/signUp"),
+              child: Text(
                 "회원가입",
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: ColorStore.textBasicSubColor,
                     fontWeight: FontWeight.w600),
               ),
-              const SizedBox(
-                width: sapceGap * 2,
-              ),
-              Text(
+            ),
+            const SizedBox(
+              width: sapceGap * 2,
+            ),
+            TextButton(
+              onPressed: () => context.push("/signIn/findPwd"),
+              child: Text(
                 "비밀번호 찾기",
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: ColorStore.textBasicSubColor,
                     fontWeight: FontWeight.w600),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              width: sapceGap * 2,
+            ),
+          ],
         ),
         const SizedBox(
           height: sapceGap * 4,

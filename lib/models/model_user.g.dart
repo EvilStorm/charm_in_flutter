@@ -11,6 +11,10 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       joinType: json['joinType'] as int,
       secureLevel: json['secureLevel'] as int,
       setting: SettingModel.fromJson(json['setting'] as Map<String, dynamic>),
+      extendInfo:
+          UserInfoModel.fromJson(json['extendInfo'] as Map<String, dynamic>),
+      authToken:
+          AuthTokenModel.fromJson(json['authToken'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
@@ -19,4 +23,6 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'joinType': instance.joinType,
       'secureLevel': instance.secureLevel,
       'setting': instance.setting,
+      'extendInfo': instance.extendInfo,
+      'authToken': instance.authToken,
     };

@@ -32,6 +32,10 @@ final GoRouter router = GoRouter(
             path: "signUp",
             builder: (context, state) => const SignUpRoute(),
           ),
+          GoRoute(
+            path: "findPwd",
+            builder: (context, state) => const SignUpRoute(),
+          ),
         ]),
   ],
   debugLogDiagnostics: true,

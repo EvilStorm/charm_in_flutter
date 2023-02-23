@@ -37,7 +37,7 @@ class AuthRepository {
 
     try {
       final response =
-          await ApiClient().post("/api/user/v1/user/signIn", body: body);
+          await ApiClient().post("/api/v1/user/signIn", body: body);
       return response;
     } catch (e) {
       rethrow;
