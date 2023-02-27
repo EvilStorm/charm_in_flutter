@@ -12,6 +12,18 @@ class SignUpComplate extends AuthState {
 
 class SignedIn extends AuthState {}
 
+class SendPasswordResetEmail extends AuthState {}
+
+class RetryTimer extends AuthState {
+  String time;
+  RetryTimer({required this.time});
+}
+
+class PasswordChangeEnableState extends AuthState {
+  bool can;
+  PasswordChangeEnableState({required this.can});
+}
+
 class ErrorHasMesasge extends AuthState {
   final String message;
   ErrorHasMesasge({required this.message});

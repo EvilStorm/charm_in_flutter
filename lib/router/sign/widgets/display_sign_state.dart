@@ -19,7 +19,7 @@ class SignStateDisplay extends StatelessWidget {
           );
         } else if (state is ErrorHasMesasge) {
           SnackBar snackBar = SnackBar(
-            duration: const Duration(milliseconds: 800),
+            duration: const Duration(milliseconds: 1500),
             behavior: SnackBarBehavior.floating,
             content: Text(
               state.message,

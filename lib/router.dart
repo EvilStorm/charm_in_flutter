@@ -1,6 +1,7 @@
 import 'package:charmin/bloc/app_start/bloc_app_start.dart';
 import 'package:charmin/router/home/route_home.dart';
 import 'package:charmin/router/setting/screen_setting.dart';
+import 'package:charmin/router/sign/route_find_pwd.dart';
 import 'package:charmin/router/sign/route_sign_in.dart';
 import 'package:charmin/router/sign/route_sign_up.dart';
 import 'package:charmin/router/splash/route_splash.dart';
@@ -26,7 +27,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
         path: "/signIn",
-        builder: (context, state) => SignInRoute(),
+        builder: (context, state) => const SignInRoute(),
         routes: [
           GoRoute(
             path: "signUp",
@@ -34,7 +35,7 @@ final GoRouter router = GoRouter(
           ),
           GoRoute(
             path: "findPwd",
-            builder: (context, state) => const SignUpRoute(),
+            builder: (context, state) => FindPasswordRoute(),
           ),
         ]),
   ],

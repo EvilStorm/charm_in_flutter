@@ -18,6 +18,12 @@ class FireBaseIdSignInEvent extends AuthEvent {
   FireBaseIdSignInEvent({required this.firebaseId});
 }
 
+class FindPasswordEvent extends AuthEvent {
+  String email;
+
+  FindPasswordEvent({required this.email});
+}
+
 class EmailSignUpEvent extends AuthEvent {
   String email;
   String password;
@@ -32,6 +38,15 @@ class EmailSignUpEvent extends AuthEvent {
 class ThridPartySignIn extends AuthEvent {
   SignedType type;
   ThridPartySignIn({required this.type});
+}
+
+class SendEmailEvent extends AuthEvent {}
+
+class FindPasswordResetEvent extends AuthEvent {}
+
+class RetryCountEvent extends AuthEvent {
+  String time;
+  RetryCountEvent({required this.time});
 }
 
 class AutoSignInEvent extends AuthEvent {}
