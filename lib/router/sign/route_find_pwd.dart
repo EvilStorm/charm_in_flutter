@@ -15,6 +15,7 @@ class FindPasswordRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthBloc bloc = BlocProvider.of<AuthBloc>(context);
+
     bool isEnable = true;
     String countDown = "0";
 
@@ -50,6 +51,7 @@ class FindPasswordRoute extends StatelessWidget {
               const SizedBox(
                 height: sapceGap * 2,
               ),
+              Text('TEXT:${context.watch<AuthBloc>().limiteCount}'),
               BlocConsumer<AuthBloc, AuthState>(
                 builder: (_, state) {
                   if (state is PasswordChangeEnableState) {

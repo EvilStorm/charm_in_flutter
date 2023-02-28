@@ -28,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   //300초 (5분)
   int _retryTime = 30;
   int _retryTimer = 0;
+  int limiteCount = 30;
 
   late UserModel userInfo;
 
@@ -190,6 +191,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       _retryTimer++;
       final int remainTime = _retryTime - _retryTimer;
+      limiteCount = remainTime;
+
       if (remainTime == -1) {
         timer.cancel();
         _retryTimer = 0;
