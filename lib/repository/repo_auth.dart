@@ -19,7 +19,8 @@ class AuthRepository {
     };
 
     try {
-      final response = await ApiClient().post("/api/v1/user", body: body);
+      final response =
+          await ApiClient.getInstance().post("/api/v1/user", body: body);
       return response;
     } on AppException {
       rethrow;
@@ -37,7 +38,17 @@ class AuthRepository {
 
     try {
       final response =
-          await ApiClient().post("/api/v1/user/signIn", body: body);
+          await ApiClient.getInstance().post("/api/v1/user/signIn", body: body);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Response> signInToken() async {
+    try {
+      final response = await ApiClient.getInstance()
+          .post("/api/v1/user/signIn/token", body: {});
       return response;
     } catch (e) {
       rethrow;
@@ -51,13 +62,13 @@ class AuthRepository {
 
     try {
       final resp = await Future.wait([
-        ApiClient().get("/api/my/v1/profile", queryParam: params),
-        ApiClient().get("/api/user/v1/commInfo", queryParam: params)
+        ApiClient.getInstance().get("/api/my/v1/profile", queryParam: params),
+        ApiClient.getInstance().get("/api/user/v1/commInfo", queryParam: params)
       ]);
       // final profResp =
-      //     await ApiClient().get("/api/my/v1/profile", queryParam: params);
+      //     await ApiClient.getInstance().get("/api/my/v1/profile", queryParam: params);
       // final commResp =
-      //     await ApiClient().get("/api/user/v1/commInfo", queryParam: params);
+      //     await ApiClient.getInstance().get("/api/user/v1/commInfo", queryParam: params);
 
       return resp;
     } catch (e) {
@@ -67,7 +78,8 @@ class AuthRepository {
 
   Future<Response> refreshToken() async {
     try {
-      final response = await ApiClient().post("/api/user/v1/refresh");
+      final response =
+          await ApiClient.getInstance().post("/api/user/v1/refresh");
       return response;
     } catch (e) {
       rethrow;
@@ -80,7 +92,7 @@ class AuthRepository {
 
   //   try {
   //     final response =
-  //         await ApiClient().post("/api/user/v1/signin", body: body);
+  //         await ApiClient.getInstance().post("/api/user/v1/signin", body: body);
   //     return response;
   //   } on AppException {
   //     rethrow;

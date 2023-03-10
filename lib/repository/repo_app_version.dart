@@ -18,7 +18,7 @@ class AppVersionRepository {
 
     try {
       final response =
-          await ApiClient().post("/api/user/v1/signin", body: body);
+          await ApiClient.getInstance().post("/api/user/v1/signin", body: body);
       return response;
     } catch (e) {
       rethrow;
@@ -27,8 +27,8 @@ class AppVersionRepository {
 
   Future<Response> reqUpdateCheck(int versionCode, String os) async {
     try {
-      final response =
-          await ApiClient().get("/api/v1/appVer/after/$versionCode/$os");
+      final response = await ApiClient.getInstance()
+          .get("/api/v1/appVer/after/$versionCode/$os");
       return response;
     } catch (e) {
       rethrow;
@@ -37,7 +37,8 @@ class AppVersionRepository {
 
   Future<Response> getCurrentVersion() async {
     try {
-      final response = await ApiClient().get("/api/v1/appVer/latest");
+      final response =
+          await ApiClient.getInstance().get("/api/v1/appVer/latest");
       return response;
     } catch (e) {
       rethrow;

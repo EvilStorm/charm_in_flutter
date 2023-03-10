@@ -3,9 +3,12 @@ import 'dart:convert';
 
 import 'package:charmin/bloc/auth/event_auth.dart';
 import 'package:charmin/bloc/auth/state_auth.dart';
+import 'package:charmin/components/shared_pref.dart';
 import 'package:charmin/constants/exception_message_type.dart';
+import 'package:charmin/constants/save_key_store.dart';
 import 'package:charmin/constants/signed_type.dart';
 import 'package:charmin/models/model_user.dart';
+import 'package:charmin/network/api_client.dart';
 import 'package:charmin/repository/repo_auth.dart';
 import 'package:charmin/utils/print.dart';
 import 'package:dio/dio.dart';
@@ -35,7 +38,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required this.authRepository,
   }) : super(Empty()) {
-    on<SignInEvent>(_signIn);
     on<EmailSignUpEvent>(_emailSignUp);
     on<EmailSignInEvent>(_emailSignIn);
     on<AutoSignInEvent>(_autoSignIn);
@@ -103,6 +105,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
 
       userInfo = UserModel.fromJson(addAccountResp.data['data']);
+
+      SharedPref()
+          .setString(SaveKeyStore.authTokenKey, userInfo.authToken.token);
+      SharedPref().setString(
+          SaveKeyStore.refreshTokenKey, userInfo.authToken.refreshToken);
 
       emit(SignedIn());
     } catch (e) {
@@ -204,17 +211,42 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 
-  void _signIn(AuthEvent event, Emitter<AuthState> emit) async {
-    emit(Loading());
-  }
-
   void _autoSignIn(AutoSignInEvent event, Emitter<AuthState> emit) async {
-    await Future.delayed(Duration(seconds: 1));
-    emit(SignedOut());
+    String? token = await SharedPref().getString(SaveKeyStore.authTokenKey);
+    Print.e("a: $token");
+
+    if (token == null) {
+      await Future.delayed(Duration(seconds: 1));
+      emit(SignedOut());
+      return;
+    }
+
+    try {
+      ApiClient.getInstance().addAuthorization(token);
+      final signInUp = await authRepository.signInToken();
+      if (signInUp.statusCode != 200) {
+        emit(ErrorHasMesasge(message: signInUp.statusMessage ?? "문제가 있습니다."));
+        return;
+      }
+
+      userInfo = UserModel.fromJson(signInUp.data['data']);
+
+      SharedPref()
+          .setString(SaveKeyStore.authTokenKey, userInfo.authToken.token);
+      SharedPref().setString(
+          SaveKeyStore.refreshTokenKey, userInfo.authToken.refreshToken);
+
+      emit(SignedIn());
+    } catch (e) {
+      Print.e(e);
+      emit(ErrorHasMesasge(message: e.toString()));
+      return;
+    }
   }
 
   void _signedOut(SignOutEvent event, Emitter<AuthState> emit) async {
-    await Future.delayed(Duration(seconds: 1));
+    SharedPref().clearSharedStorage();
+
     emit(SignedOut());
   }
 }

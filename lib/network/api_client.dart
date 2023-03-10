@@ -11,7 +11,11 @@ class ApiClient {
   static final ApiClient _client = ApiClient._internal();
   late Dio _dio;
 
-  factory ApiClient() {
+  // factory ApiClient() {
+  //   return _client;
+  // }
+
+  factory ApiClient.getInstance() {
     return _client;
   }
   Dio getDioOriginal() {
@@ -38,6 +42,10 @@ class ApiClient {
 
   void addHeader(key, value) {
     _dio.options.headers[key] = value;
+  }
+
+  void addAuthorization(String token) {
+    _dio.options.headers["authorization"] = token;
   }
 
   Future<Response> get(String url, {Map<String, dynamic>? queryParam}) async {

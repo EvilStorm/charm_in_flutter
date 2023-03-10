@@ -3,8 +3,6 @@ import 'package:charmin/constants/signed_type.dart';
 
 abstract class AuthEvent with FetchEvent {}
 
-class SignInEvent extends AuthEvent {}
-
 class EmailSignInEvent extends AuthEvent {
   String email;
   String password;

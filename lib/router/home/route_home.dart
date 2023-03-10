@@ -1,5 +1,6 @@
 import 'package:charmin/bloc/auth/bloc_auth.dart';
 import 'package:charmin/bloc/auth/event_auth.dart';
+import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,11 @@ class HomeRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authBloc = BlocProvider.of<AuthBloc>(context);
+    authBloc.stream.listen((state) {
+      if (state is SignedOut) {
+        context.pushReplacement("/signIn");
+      }
+    });
 
     return Scaffold(
       body: SafeArea(

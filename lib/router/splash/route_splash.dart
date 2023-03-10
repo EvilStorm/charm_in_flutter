@@ -1,7 +1,10 @@
 import 'package:charmin/bloc/app_start/bloc_app_start.dart';
+import 'package:charmin/bloc/app_start/event_app_start.dart';
 import 'package:charmin/bloc/app_start/state_app_start.dart';
 import 'package:charmin/bloc/app_version/bloc_app_version.dart';
 import 'package:charmin/bloc/app_version/event_app_version.dart';
+import 'package:charmin/bloc/auth/bloc_auth.dart';
+import 'package:charmin/bloc/auth/state_auth.dart';
 import 'package:charmin/constants/exception_handler.dart';
 import 'package:charmin/repository/repo_app_version.dart';
 import 'package:charmin/router/splash/widgets/app_version.dart';
@@ -26,10 +29,23 @@ class SplashRoute extends StatelessWidget with ExceptionHandler {
     );
   }
 
+  void _waitAutoSigned(BuildContext context, AuthBloc bloc) {
+    bloc.stream.listen((event) {
+      final appStartBloc = BlocProvider.of<AppStartBloc>(context);
+      if (event is SignedIn) {
+        appStartBloc.add(CheckedSignEvent(isSuccess: true));
+      } else {
+        appStartBloc.add(CheckedSignEvent(isSuccess: false));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final appStartBloc = BlocProvider.of<AppStartBloc>(context);
+    final authBloc = BlocProvider.of<AuthBloc>(context);
     _readyStart(context, appStartBloc);
+    _waitAutoSigned(context, authBloc);
 
     return Scaffold(
       body: SafeArea(
@@ -50,7 +66,6 @@ class SplashRoute extends StatelessWidget with ExceptionHandler {
               children: const [
                 Splash(),
                 Center(child: AppVersion()),
-                AutoSignIn(),
               ],
             ),
           ),

@@ -104,7 +104,7 @@ class DioInterceptor extends Interceptor {
   Future<Response> _retry(RequestOptions options) async {
     final opts = Options(method: options.method, headers: options.headers);
 
-    final req = await ApiClient().request(options.path,
+    final req = await ApiClient.getInstance().request(options.path,
         options: opts, data: options.data, parameter: options.queryParameters);
 
     return req;
